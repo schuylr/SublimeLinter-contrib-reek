@@ -17,21 +17,13 @@ import re
 class Reek(RubyLinter):
     """Provides an interface to reek."""
 
-    syntax = (
-        'better rspec',
-        'betterruby',
-        'cucumber steps',
-        'rspec',
-        'ruby experimental',
-        'ruby on rails',
-        'ruby'
-    )
+   'defaults' = {
+       'selector': 'source.ruby - text.html - text.haml'
+   }
+
     cmd = 'ruby -S reek'
     regex = r'^.+?\[(?P<line>\d+).*\]:(?P<message>.+) \[.*\]'
     tempfile_suffix = 'rb'
-    version_args = '-S reek -v'
-    version_re = r'reek\s(?P<version>\d+\.\d+\.\d+)'
-    version_requirement = '>= 3.5.0'
     config_file = ('-c', 'config.reek')
 
     def split_match(self, match):
