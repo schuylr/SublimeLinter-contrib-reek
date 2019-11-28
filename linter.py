@@ -17,14 +17,13 @@ import re
 class Reek(RubyLinter):
     """Provides an interface to reek."""
 
-   'defaults' = {
-       'selector': 'source.ruby - text.html - text.haml'
-   }
+    defaults = {
+        'selector': 'source.ruby - text.html - text.haml'
+    }
 
-    cmd = 'ruby -S reek'
+    cmd = 'ruby -S reek ${temp_file}'
     regex = r'^.+?\[(?P<line>\d+).*\]:(?P<message>.+) \[.*\]'
     tempfile_suffix = 'rb'
-    config_file = ('-c', 'config.reek')
 
     def split_match(self, match):
         """Extract named capture groups from the regex and return them as a tuple."""
